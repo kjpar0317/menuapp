@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>window.open Example</title>
+
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for Cordova to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+	var iabRef = null;
+
+    function iabClose(event) {
+         //iabRef.removeEventListener('loadstop', changeBackgroundColor);
+         iabRef.removeEventListener('exit', iabClose);
+    }
+
+    // Cordova is ready
+    //
+    function onDeviceReady() {
+        // external url
+        iabRef = window.open('http://52.79.55.101', '_blank', 'location=no');
+        // relative document
+        //ref = window.open('next.html', '_self');
+        iabRef.addEventListener('exit', iabClose);
+    }
+
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
