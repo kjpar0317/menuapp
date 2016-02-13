@@ -24,9 +24,31 @@
         iabRef = window.open('http://52.79.55.101', '_blank', 'location=no');
         // relative document
         //ref = window.open('next.html', '_self');
-        iabRef.addEventListener('exit', iabClose);
+        document.addEventListener("backbutton", onBackPressed, false);
+        document.addEventListener('exit', onExit);
     }
 
+    public void onBackPressed () {
+        if (this.inAppBrowser == null) {
+            this.dismiss();
+        } else {
+            if (this.inAppBrowser.canGoBack()) {
+                this.inAppBrowser.goBack();
+            }  else {
+                this.inAppBrowser.closeDialog();
+            }
+        }
+    }
+    
+    public void onExit() {
+        if (navigator.app) {
+            navigator.app.exitApp();
+         }
+         else if (navigator.device) {
+             navigator.device.exitApp();
+         }
+    }
+    
     </script>
   </head>
   <body>
