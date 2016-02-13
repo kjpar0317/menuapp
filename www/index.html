@@ -45,9 +45,6 @@
         iabRef.removeEventListener('loaderror', onError);
         iabRef.removeEventListener('exit', onExit);
         
-        alert(event);
-        alert(event.url);
-        
         if(!event.url) {
             if(navigator.app){
                 navigator.app.exitApp();
