@@ -24,8 +24,8 @@
         iabRef = window.open('http://52.79.55.101', '_blank', 'location=no');
         // relative document
         //ref = window.open('next.html', '_self');
-        document.addEventListener("backbutton", onBackPressed, false);
-        document.addEventListener('exit', onExit);
+        iabRef.addEventListener("backbutton", onBackPressed, false);
+        //document.addEventListener('exit', onExit);
     }
 
     public void onBackPressed () {
