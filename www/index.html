@@ -8,47 +8,51 @@
 
     // Wait for Cordova to load
     //
+	document.addEventListener("online", onOnline, false);
+	document.addEventListener("offline", onOffline, false);
     document.addEventListener("deviceready", onDeviceReady, false);
-
-	var iabRef = null;
-
-    function iabClose(event) {
-         //iabRef.removeEventListener('loadstop', changeBackgroundColor);
-         iabRef.removeEventListener('exit', iabClose);
-    }
+    
+    var ref = null;
 
     // Cordova is ready
     //
     function onDeviceReady() {
+    	
         // external url
-        iabRef = window.open('http://52.79.55.101', '_blank', 'location=no');
+        var iabRef = window.open('http://52.79.55.101', '_blank', 'location=no');
         // relative document
-        //ref = window.open('next.html', '_self');
-        iabRef.addEventListener("backbutton", onBackPressed, false);
-        //document.addEventListener('exit', onExit);
+        //iabRef = window.open('next.html', '_self');
+		//iabRef.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
+		//iabRef.addEventListener('loadstop', function(event) { alert('stop: ' + event.url); });
+		iabRef.addEventListener('loaderror', onError);
+		iabRef.addEventListener('exit', onExit);
     }
 
-    public void onBackPressed () {
-        if (this.inAppBrowser == null) {
-            this.dismiss();
-        } else {
-            if (this.inAppBrowser.canGoBack()) {
-                this.inAppBrowser.goBack();
-            }  else {
-                this.inAppBrowser.closeDialog();
-            }
-        }
+    function onOnline() {
+        console.log("onOnline");
     }
-    
-    public void onExit() {
-        if (navigator.app) {
+    function onOffline() {
+    	alert("네트워크가 불안정하여 앱을 강제 종료하겠습니다.");
+    	onExit();
+    }
+    function onError(event) {
+    	alert("앱 실행 중 오류 발생, 에러메세지 :" + event);
+        onExit();
+    }
+    function onExit() {
+    	/*
+        iabRef.removeEventListener('loadstart', iabLoadStart);
+        iabRef.removeEventListener('loadstop', iabLoadStop);
+        iabRef.removeEventListener('loaderror', onError);
+        iabRef.removeEventListener('exit', onExit);
+        */
+        
+        if(navigator.app){
             navigator.app.exitApp();
-         }
-         else if (navigator.device) {
-             navigator.device.exitApp();
-         }
+	    }else if(navigator.device){
+			navigator.device.exitApp();
+	    }
     }
-    
     </script>
   </head>
   <body>
