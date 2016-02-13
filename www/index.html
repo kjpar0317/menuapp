@@ -12,14 +12,14 @@
 	document.addEventListener("offline", onOffline, false);
     document.addEventListener("deviceready", onDeviceReady, false);
     
-    var ref = null;
+    var iabRef = null;
 
     // Cordova is ready
     //
     function onDeviceReady() {
     	
         // external url
-        var iabRef = window.open('http://52.79.55.101', '_blank', 'location=no');
+        iabRef = window.open('http://52.79.55.101', '_blank', 'location=no');
         // relative document
         //iabRef = window.open('next.html', '_self');
 		//iabRef.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
@@ -37,21 +37,21 @@
     }
     function onError(event) {
     	alert("앱 실행 중 오류 발생, 에러메세지 :" + event);
-        onExit();
+        //onExit();
     }
-    function onExit() {
-    	/*
-        iabRef.removeEventListener('loadstart', iabLoadStart);
-        iabRef.removeEventListener('loadstop', iabLoadStop);
+    function onExit(event) {
+        //iabRef.removeEventListener('loadstart', iabLoadStart);
+        //iabRef.removeEventListener('loadstop', iabLoadStop);
         iabRef.removeEventListener('loaderror', onError);
         iabRef.removeEventListener('exit', onExit);
-        */
         
-        if(navigator.app){
-            navigator.app.exitApp();
-	    }else if(navigator.device){
-			navigator.device.exitApp();
-	    }
+        if(!event.url) {
+            if(navigator.app){
+                navigator.app.exitApp();
+    	    }else if(navigator.device){
+    			navigator.device.exitApp();
+    	    }
+        }
     }
     </script>
   </head>
