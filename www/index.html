@@ -19,7 +19,8 @@
     function onDeviceReady() {
     	
         // external url
-        iabRef = window.open('http://52.79.55.101', '_blank', 'location=no');
+        //iabRef = window.open('http://52.79.55.101', '_blank', 'location=no');
+        iabRef = window.open('http://dev.goodcenrnd.com', '_blank', 'location=no');
         // relative document
         //iabRef = window.open('next.html', '_self');
 		//iabRef.addEventListener('loadstart', function(event) { alert('start: ' + event.url); });
@@ -32,11 +33,11 @@
         console.log("onOnline");
     }
     function onOffline() {
-    	alert("³×Æ®¿öÅ©°¡ ºÒ¾ÈÁ¤ÇÏ¿© ¾ÛÀ» °­Á¦ Á¾·áÇÏ°Ú½À´Ï´Ù.");
+    	alert("ï¿½ï¿½Æ®ï¿½ï¿½Å©ï¿½ï¿½ ï¿½Ò¾ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°Ú½ï¿½ï¿½Ï´ï¿½.");
     	onExit();
     }
     function onError(event) {
-    	alert("¾Û ½ÇÇà Áß ¿À·ù ¹ß»ý, ¿¡·¯¸Þ¼¼Áö :" + event);
+    	alert("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½Þ¼ï¿½ï¿½ï¿½ :" + event);
         //onExit();
     }
     function onExit(event) {
